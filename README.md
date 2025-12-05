@@ -1,298 +1,185 @@
-# 🏦 SwiftFin - AI-Powered Financial Assistant
+# 🏦 SwiftFin - AI Financial Assistant
 
-**SwiftFin** es una aplicación iOS inteligente que combina análisis financiero personalizado con inteligencia artificial avanzada (Gemini API) para ayudar a los usuarios a gestionar sus finanzas de manera eficiente y accesible.
+SwiftFin es una app iOS que usa inteligencia artificial (Google Gemini) para analizar tus finanzas y darte consejos personalizados.
 
-## ✨ Características Principales
+## ✨ Características
 
-- 🤖 **Chat AI con Gemini**: Asistente financiero impulsado por Google Gemini con selección inteligente de modelos
-- 📊 **Análisis Financiero**: Visualización y análisis de gastos, ingresos y transacciones
-- 🎙️ **Modo Voz**: Interacción por voz con reconocimiento de voz (Speech Recognition) y síntesis de voz (ElevenLabs TTS)
-- ⚡ **Algoritmo Greedy**: Selección dinámica entre modelos Gemini 2.0-flash (rápido) y 2.5-flash (potente) para optimizar costos y latencia
-- 💾 **Dynamic Programming**: Caché de respuestas (Memoization) y gestión inteligente del contexto conversacional
-- 🏦 **Integración con Capital One Nessie API**: Simulación de datos financieros reales
+- 🤖 **Chat con IA**: Habla con un asistente financiero inteligente
+- 📊 **Análisis de gastos**: Visualiza y entiende tus transacciones
+- 🎙️ **Modo voz**: Pregunta usando tu voz
+- ⚡ **Optimización inteligente**: Usa diferentes modelos de IA según la pregunta
+- 🏦 **Simulación real**: Integrado con Capital One Nessie API
 
-## 📋 Requisitos Previos
+## 👥 Equipo
 
-### Software Requerido
+| Miembro                 | Responsabilidad          |
+| ----------------------- | ------------------------ |
+| **Miguel Ángel Gavito** | 🧮 Algoritmo Greedy      |
+| **Juan Luis Alvarez**   | 💾 Dynamic Programming   |
+| **Victor Valero**       | 🎨 UI/UX y Visualización |
+| **Cruz Yael Pérez**     | 🔊 APIs y Accesibilidad  |
 
-- **macOS**: 13.0 (Ventura) o superior
-- **Xcode**: 15.0 o superior
-- **iOS Deployment Target**: iOS 17.0+
-- **Swift**: 5.9+
+## 🚀 Instalación Rápida
 
-### APIs y Claves
+### 1. Requisitos
 
-1. **Google Gemini API Key** ([Obtener aquí](https://makersuite.google.com/app/apikey))
-2. **Capital One Nessie API Key** ([Obtener aquí](http://api.nessieisreal.com/))
-3. **ElevenLabs API Key** (Opcional, solo para síntesis de voz) ([Obtener aquí](https://elevenlabs.io/))
+- macOS 13.0+
+- Xcode 15.0+
+- iOS 17.0+
 
-## 🚀 Instalación
-
-### 1. Clonar el Repositorio
+### 2. Clonar y Abrir
 
 ```bash
 git clone https://github.com/tu-usuario/HackathonMTY.git
 cd HackathonMTY
-```
-
-### 2. Abrir el Proyecto en Xcode
-
-```bash
 open CapitalOneDemo.xcodeproj
 ```
 
-O simplemente haz doble clic en el archivo `CapitalOneDemo.xcodeproj` desde Finder.
+### 3. Configurar API Keys
 
-### 3. Instalar Dependencias
-
-El proyecto usa **Swift Package Manager** (SPM). Las dependencias se resolverán automáticamente al abrir el proyecto:
-
-- `GoogleGenerativeAI` - Para integración con Gemini API
-
-Si las dependencias no se descargan automáticamente:
-
-1. En Xcode, ve a **File → Packages → Resolve Package Versions**
-2. Espera a que se descarguen todas las dependencias
-
-## 🔑 Configuración de API Keys
-
-### Paso 1: Configurar `GenerativeAIInfo.plist`
-
-1. Navega a `CapitalOneDemo/Config/GenerativeAIInfo.plist`
-2. Abre el archivo y añade tus claves:
+**Archivo: `CapitalOneDemo/Config/GenerativeAIInfo.plist`**
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
 <dict>
     <key>GEMINI_API_KEY</key>
-    <string>TU_GEMINI_API_KEY_AQUI</string>
-    <key>ELEVEN_API_KEY</key>
-    <string>TU_ELEVENLABS_API_KEY_AQUI</string>
+    <string>tu_api_key_aqui</string>
 </dict>
-</plist>
 ```
 
-### Paso 2: Configurar Capital One Nessie API
-
-1. Abre `CapitalOneDemo/Config/LocalSecrets.swift`
-2. Reemplaza `YOUR_DEFAULT_API_KEY_HERE` con tu API Key de Nessie:
+**Archivo: `CapitalOneDemo/Config/LocalSecrets.swift`**
 
 ```swift
-enum LocalSecrets {
-    static var nessieApiKey: String {
-        if let key = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String, !key.isEmpty {
-            return key
-        }
-        return "TU_NESSIE_API_KEY_AQUI" // ← Reemplaza aquí
-    }
-}
+return "tu_nessie_api_key_aqui"
 ```
 
-**Alternativa (Recomendada)**: Usa `localSecrets.xcconfig`
+### 4. Compilar
 
-1. Crea o edita `CapitalOneDemo/Config/localSecrets.xcconfig`:
+Presiona **⌘ + R** en Xcode
+
+## 🔑 Obtener API Keys
+
+- **Gemini API**: https://makersuite.google.com/app/apikey
+- **Nessie API**: http://api.nessieisreal.com/
+
+## 🧠 Tecnología
+
+### Algoritmo Greedy (Miguel Ángel)
+
+Selecciona automáticamente el modelo de IA más eficiente:
+
+- 🟢 **Gemini 2.0-flash**: Preguntas simples y rápidas
+- 🔴 **Gemini 2.5-flash**: Análisis financieros complejos
+
+### Dynamic Programming (Juan Luis)
+
+Optimiza memoria y reduce costos:
+
+- **Cache inteligente**: Guarda respuestas previas
+- **Gestión de historial**: Solo mantiene lo relevante
+
+### UI Visual (Victor)
+
+- Tags de colores que muestran qué modelo se está usando
+- Interfaz intuitiva con animaciones fluidas
+
+### Integración APIs (Cruz Yael)
+
+- Conexión con Gemini para respuestas inteligentes
+- Reconocimiento y síntesis de voz
+- Manejo de errores robusto
+
+## 📖 Cómo Usar
+
+1. Abre la app y ve a la pestaña **"FinBot"**
+2. Escribe o habla tu pregunta financiera
+3. Observa el tag de color en la respuesta:
+   - 🟢 = Modelo rápido
+   - 🔴 = Modelo potente
+
+### Ejemplos
+
+**Preguntas simples** (activan 🟢 2.0-flash):
 
 ```
-API_KEY = tu_nessie_api_key_aqui
+Hola
+¿Qué es el IVA?
 ```
 
-2. Asegúrate de que `localSecrets.xcconfig` esté en el `.gitignore` para no exponer tus claves.
+**Análisis complejos** (activan 🔴 2.5-flash):
 
-### ⚠️ Importante: Seguridad de las Claves
-
-**NUNCA** subas tus API keys a GitHub. El proyecto incluye archivos de ejemplo, pero debes crear tus propias versiones locales:
-
-```bash
-# Añadir a .gitignore si no está
-echo "CapitalOneDemo/Config/localSecrets.xcconfig" >> .gitignore
-echo "CapitalOneDemo/Config/GenerativeAIInfo.plist" >> .gitignore
+```
+Analiza mis gastos del mes
+Dame consejos de ahorro
 ```
 
-## 🔨 Compilación y Ejecución
+## 🛠️ Problemas Comunes
 
-### Opción 1: Usando Xcode GUI
+**Error: "Could not find API Key"**
+→ Verifica que configuraste `GenerativeAIInfo.plist`
 
-1. Abre el proyecto en Xcode
-2. Selecciona un simulador o dispositivo iOS (iPhone 15 Pro recomendado)
-3. Presiona **⌘ + R** o haz clic en el botón ▶️ "Run"
+**Error: "GenerateContentError error 1"**
+→ Tu API Key de Gemini no es válida o no tiene acceso al modelo
 
-### Opción 2: Usando Command Line
-
-```bash
-# Compilar el proyecto
-xcodebuild -project CapitalOneDemo.xcodeproj -scheme CapitalOneDemo -configuration Debug build
-
-# Ejecutar en simulador
-xcrun simctl boot "iPhone 15 Pro"
-xcodebuild -project CapitalOneDemo.xcodeproj -scheme CapitalOneDemo -destination 'platform=iOS Simulator,name=iPhone 15 Pro' run
-```
+**Modo voz no funciona**
+→ Es normal si no tienes ElevenLabs API Key. El chat de texto funciona perfectamente sin voz.
 
 ## 📁 Estructura del Proyecto
 
 ```
 CapitalOneDemo/
-├── Assets.xcassets/         # Recursos visuales (iconos, imágenes)
-├── Components/              # Componentes reutilizables de UI
-├── Config/                  # Configuración y API keys
-│   ├── GenerativeAIInfo.plist
-│   ├── LocalSecrets.swift
-│   └── localSecrets.xcconfig
-├── Models/                  # Modelos de datos
-│   ├── Models.swift
-│   ├── GetModels.swift
-│   └── AntExpense.swift
-├── Services/                # Lógica de negocio y APIs
-│   ├── NessieService.swift
-│   ├── Audio/
-│   │   ├── ElevenLabsTTSClient.swift
-│   │   └── SpeechRecognizer.swift
-│   └── AuthStore.swift
-├── ViewModels/              # ViewModels (MVVM)
-│   ├── ChatViewModel.swift  # ← Algoritmos Greedy + DP aquí
-│   ├── OverviewViewModel.swift
-│   └── ExpensesViewModel.swift
-├── Views/                   # Vistas SwiftUI
-│   ├── ChatView.swift
-│   ├── OverviewView.swift
-│   └── MainAppView.swift
-└── Info.plist
+├── Config/                  # API Keys
+├── Models/                  # Datos
+├── Services/                # APIs y lógica
+├── ViewModels/              # Algoritmos (Greedy + DP)
+├── Views/                   # Interfaces
+└── Components/              # UI reutilizable
 ```
 
-## 🧠 Arquitectura: Algoritmos Avanzados
+## 💡 Contribuciones Detalladas
 
-### Algoritmo Greedy (Selección de Modelo)
+### Miguel Ángel - Greedy Algorithm
 
-El sistema utiliza un **algoritmo greedy** para seleccionar dinámicamente el modelo de IA óptimo:
+- Decide en tiempo real qué modelo usar
+- Optimiza costos y velocidad
+- Heurística basada en keywords y longitud
 
-- **Gemini 2.0-flash** 🟢: Para consultas simples (< 50 caracteres, sin keywords complejas)
-  - Ventaja: Baja latencia, menor costo
-- **Gemini 2.5-flash** 🔴: Para análisis financieros complejos
-  - Ventaja: Mayor capacidad de razonamiento
+**Archivo**: `ChatViewModel.swift` (función `selectOptimalModel`)
 
-Implementación: `ChatViewModel.swift → selectOptimalModel()`
+### Juan Luis - Dynamic Programming
 
-### Dynamic Programming (Gestión de Contexto)
+- Sistema de caché para respuestas repetidas
+- Buffer circular que ahorra hasta 70% de tokens
+- Gestión eficiente de memoria
 
-- **Memoization**: Caché de respuestas repetidas (O(1) lookup)
-- **Circular Buffer**: Ventana deslizante que mantiene solo los últimos N mensajes relevantes, reduciendo tokens enviados al modelo
+**Archivo**: `ChatViewModel.swift` (variables `responseCache` y `historyBuffer`)
 
-Implementación: `ChatViewModel.swift → responseCache` y `historyBuffer`
+### Victor - UI/UX
 
-## 🛠️ Solución de Problemas
+- Tags visuales con colores (verde/rojo)
+- Interfaz moderna y animada
+- Documentación completa
 
-### Error: "Could not find API Key"
+**Archivos**: `MessageBubble.swift`, `ChatView.swift`
 
-**Causa**: `GenerativeAIInfo.plist` no está configurado correctamente.
+### Cruz Yael - APIs
 
-**Solución**:
+- Integración con Google Gemini
+- Reconocimiento de voz (Apple Speech)
+- Síntesis de voz (ElevenLabs)
 
-1. Verifica que el archivo existe en `CapitalOneDemo/Config/`
-2. Asegúrate de que contiene la clave `GEMINI_API_KEY`
-3. Limpia el build: **⌘ + Shift + K** y vuelve a compilar
+**Archivos**: `ElevenLabsTTSClient.swift`, `SpeechRecognizer.swift`
 
-### Error: "GoogleGenerativeAI.GenerateContentError error 1"
-
-**Causa**: El modelo de Gemini especificado no está disponible para tu API Key.
-
-**Solución**:
-
-1. Verifica que tu API Key de Gemini es válida
-2. Revisa que tienes acceso a los modelos `gemini-2.0-flash` y `gemini-2.5-flash`
-3. Prueba con `gemini-1.5-flash` si los modelos 2.x no están disponibles
-
-### Error: "ElevenLabs TTS 401 Unusual Activity"
-
-**Causa**: Tu cuenta de ElevenLabs (Free Tier) fue bloqueada por uso sospechoso o límite excedido.
-
-**Solución**:
-
-- La app funcionará perfectamente en **modo texto** (el error solo afecta la síntesis de voz)
-- Puedes desactivar el modo voz desde el botón de la toolbar
-- Para resolver: actualiza tu plan de ElevenLabs o usa una nueva API Key
-
-### Dependencias no se resuelven
-
-```bash
-# En la carpeta del proyecto
-rm -rf ~/Library/Developer/Xcode/DerivedData
-xcodebuild -resolvePackageDependencies
-```
-
-### Simulador no arranca
-
-```bash
-# Reiniciar simuladores
-xcrun simctl shutdown all
-xcrun simctl erase all
-```
-
-## 🎯 Uso de la Aplicación
-
-### Modo Chat (Texto)
-
-1. Navega a la pestaña **"FinBot"**
-2. Escribe tu pregunta financiera en el campo de texto
-3. Observa el **tag de color** en cada respuesta:
-   - 🟢 **Verde**: Respuesta generada con Gemini 2.0-flash (rápido)
-   - 🔴 **Rojo**: Respuesta generada con Gemini 2.5-flash (análisis complejo)
-
-### Modo Voz
-
-1. Toca el ícono de **micrófono** en la toolbar
-2. Habla tu pregunta
-3. El bot responderá con voz (si ElevenLabs está configurado)
-
-### Ejemplos de Prompts
-
-**Para activar Gemini 2.0-flash** 🟢:
-
-```
-Hola
-¿Qué es el IVA?
-Hi there
-```
-
-**Para activar Gemini 2.5-flash** 🔴:
-
-```
-Analiza mis gastos del mes pasado y dame recomendaciones
-Dame un resumen de mis transacciones
-Can you predict my spending trends?
-```
-
-## 📊 Características Técnicas
+## 🎯 Stack Tecnológico
 
 - **Lenguaje**: Swift 5.9
-- **UI Framework**: SwiftUI
-- **Arquitectura**: MVVM (Model-View-ViewModel)
-- **Networking**: URLSession + async/await
-- **AI**: Google Gemini API (2.0-flash y 2.5-flash)
-- **Speech**: Apple Speech Framework + ElevenLabs TTS
-- **Persistencia**: Keychain (para tokens de autenticación)
-
-## 👥 Colaboradores
-
-- **Miguel Ángel Gavito González**
-- **Juan Luis Alvarez Cisneros**
-- **Cruz Yael Pérez González**
-- **Victor Valero**
+- **UI**: SwiftUI
+- **IA**: Google Gemini API
+- **Arquitectura**: MVVM
 
 ## 📄 Licencia
 
-Este proyecto fue desarrollado para el **HackathonMTY** y es de uso educativo.
-
-## 🙋 Soporte
-
-Si encuentras problemas durante la instalación o ejecución:
-
-1. Revisa la sección **Solución de Problemas** arriba
-2. Verifica que todas las API keys están correctamente configuradas
-3. Consulta la documentación oficial:
-   - [Gemini API Docs](https://ai.google.dev/docs)
-   - [Capital One Nessie API](http://api.nessieisreal.com/)
+Proyecto educativo desarrollado para HackathonMTY.
 
 ---
 
-**¡Disfruta usando SwiftFin! 🚀💰**
+**¿Preguntas?** Revisa la sección de problemas comunes o consulta la [documentación de Gemini](https://ai.google.dev/docs).
