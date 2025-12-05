@@ -14,10 +14,10 @@ SwiftFin es una app iOS que usa inteligencia artificial (Google Gemini) para ana
 
 | Miembro                 | Responsabilidad          |
 | ----------------------- | ------------------------ |
-| **Miguel Ángel Gavito** | 🧮 Algoritmo Greedy      |
-| **Juan Luis Alvarez**   | 💾 Dynamic Programming   |
+| **Marco** | 🧮 Algoritmo Greedy      |
+| **Juan Luis**   | 💾 Dynamic Programming   |
 | **Victor Valero**       | 🎨 UI/UX y Visualización |
-| **Cruz Yael Pérez**     | 🔊 APIs y Accesibilidad  |
+
 
 ## 🚀 Instalación Rápida
 
@@ -137,7 +137,7 @@ CapitalOneDemo/
 
 ## 💡 Contribuciones Detalladas
 
-### Miguel Ángel - Greedy Algorithm
+### Marco - Greedy Algorithm
 
 - Decide en tiempo real qué modelo usar
 - Optimiza costos y velocidad
@@ -160,14 +160,6 @@ CapitalOneDemo/
 - Documentación completa
 
 **Archivos**: `MessageBubble.swift`, `ChatView.swift`
-
-### Cruz Yael - APIs
-
-- Integración con Google Gemini
-- Reconocimiento de voz (Apple Speech)
-- Síntesis de voz (ElevenLabs)
-
-**Archivos**: `ElevenLabsTTSClient.swift`, `SpeechRecognizer.swift`
 
 ## 🎯 Stack Tecnológico
 
